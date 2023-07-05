@@ -1,11 +1,9 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import seaborn as sns
+import sys
+from seaborn import hls_palette
 from pendulum import DoublePendulum
 from time import time
-import csv, sys
-# from numpy import arctan
-
 deg = 120
 fps = 60
 seconds = 20
@@ -22,7 +20,7 @@ pendulum2.step(dt)
 fig = plt.figure()
 ax = fig.add_subplot(111, aspect='equal', autoscale_on=False,
                     xlim=(-2, 2), ylim=(-2, 2))
-c = sns.hls_palette(8, l=.3, s=.8)
+c = hls_palette(8, l=.3, s=.8)
 ax.grid(False)
 ax.set_xticks([])
 ax.set_yticks([])
@@ -107,7 +105,7 @@ t0 = time()
 animate(0)
 t1 = time()
 interval = 1000 * dt - (t1 - t0)
-
-anim = animation.FuncAnimation(fig, animate, frames=int(seconds/dt), blit=True, init_func=init, interval=interval)
-# plt.show()
-anim.save('animation.gif', writer = 'imagemagick')
+print("\n\n\n", interval, "\n\n\n")
+anim = animation.FuncAnimation(fig, animate, init_func=init, frames=int(total_frames), interval=fps)
+anim.save('animation.gif', writer="imagemagick")
+plt.close()
