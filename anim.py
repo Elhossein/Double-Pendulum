@@ -7,7 +7,7 @@ import csv, sys
 # from numpy import arctan
 
 deg = 120
-fps = 30
+fps = 60
 seconds = 30
 trail = -80
 dt = 1./fps
@@ -15,8 +15,8 @@ total_frames = seconds * fps
 
 pendulum1 = DoublePendulum([-100, 0.0, deg, 0.0])
 pendulum2 = DoublePendulum([-100, 0.0, deg + 0.001, 0.0])
-pendulum1.step(500)
-pendulum2.step(500)
+pendulum1.step(dt)
+pendulum2.step(dt)
 
 
 fig = plt.figure()
