@@ -8,7 +8,7 @@ import csv, sys
 
 deg = 120
 fps = 60
-seconds = 30
+seconds = 40
 trail = -80
 dt = 1./fps
 total_frames = seconds * fps
@@ -110,4 +110,4 @@ interval = 1000 * dt - (t1 - t0)
 
 anim = animation.FuncAnimation(fig, animate, frames=int(seconds/dt), blit=True, init_func=init, interval=interval)
 plt.show()
-# anim.save('animation.gif', fps=1/dt, writer = 'imagemagick')
+anim.save('animation.gif', fps=1/dt, writer = 'imagemagick')
