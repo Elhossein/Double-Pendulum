@@ -6,13 +6,13 @@ from pendulum import DoublePendulum
 from time import time
 deg = 120
 fps = 60
-seconds = 20
+seconds = 40
 trail = -80
 dt = 1./fps
 total_frames = seconds * fps
 
 pendulum1 = DoublePendulum([-100, 0.0, deg, 0.0])
-pendulum2 = DoublePendulum([-100, 0.0, deg + 0.001, 0.0])
+pendulum2 = DoublePendulum([-100, 0.0, deg + 0.0001, 0.0])
 pendulum1.step(dt)
 pendulum2.step(dt)
 
@@ -24,7 +24,7 @@ c = hls_palette(8, l=.3, s=.8)
 ax.grid(False)
 ax.set_xticks([])
 ax.set_yticks([])
-ax.set_title('Double Pendulum')
+ax.set_title('Two Double Pendulums')
 
 line1, = ax.plot([], [], "-o", color='k', linestyle='-', linewidth=2)
 line2, = ax.plot([], [], "-o", color='k', linestyle='-', linewidth=2)
@@ -105,7 +105,7 @@ t0 = time()
 animate(0)
 t1 = time()
 interval = 1000 * dt - (t1 - t0)
-print("\n\n\n", interval, "\n\n\n")
-anim = animation.FuncAnimation(fig, animate, init_func=init, frames=int(total_frames), interval=fps/2)
+print("\n\n\n", 1000 * dt, "\n\n\n")
+anim = animation.FuncAnimation(fig, animate, init_func=init, frames=int(total_frames), interval=20)
 anim.save('animation.gif', writer="imagemagick")
 plt.close()
