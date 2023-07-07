@@ -37,9 +37,7 @@ class DoublePendulum:
     def energy(self):
         
         (L1, L2, M1, M2, G) = self.params
-
-        x = np.cumsum([L1 * sin(self.state[0]),
-                       L2 * sin(self.state[2])])
+        
         y = np.cumsum([-L1 * cos(self.state[0]),
                        -L2 * cos(self.state[2])])
         vx = np.cumsum([L1 * self.state[1] * cos(self.state[0]),
