@@ -3,4 +3,4 @@ Animation of two double pendulums starting off with a small diffrence in the ini
 
 Here is an example of two double pendulums with $\theta_1$ = -100 degrees and $\theta_2$ = 120 degrees 
 
-![Example of two double pendulums with $\theta_1$ = 120 degrees](animation1.gif)
+![Example of two double pendulums with $\theta_1$ = 120 degrees](animation.gif)

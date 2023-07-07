@@ -3,7 +3,7 @@ import numpy as np
 from scipy import integrate
 
 class DoublePendulum:
-
+    '''Double Pendulum Class'''
     def __init__(self, init_state = [120, 0, -20, 0], L1=1.0, L2=1.0, M1=1.0, M2=1.0, G=9.8, origin=(0, 0)): 
         self.init_state = np.asarray(init_state, dtype='float')
         self.params = (L1, L2, M1, M2, G)
@@ -13,7 +13,7 @@ class DoublePendulum:
 
     
     def get_x(self):
-
+        '''compute the x component of the pendulum's position'''
         (L1, L2, _, _, _) = self.params
 
         x = np.cumsum([self.origin[0],
@@ -24,7 +24,7 @@ class DoublePendulum:
     
 
     def get_y(self):
-
+        '''compute the y component of the pendulum's position'''
         (L1, L2, _, _, _) = self.params
 
         y = np.cumsum([self.origin[1],
@@ -35,9 +35,9 @@ class DoublePendulum:
 
 
     def energy(self):
-        
+        ''''compute the energy of the pendulum'''
         (L1, L2, M1, M2, G) = self.params
-        
+
         y = np.cumsum([-L1 * cos(self.state[0]),
                        -L2 * cos(self.state[2])])
         vx = np.cumsum([L1 * self.state[1] * cos(self.state[0]),
@@ -49,10 +49,10 @@ class DoublePendulum:
         K = 0.5 * (M1 * np.dot(vx, vx) + M2 * np.dot(vy, vy))
 
         return U + K
-
+    
 
     def dstate_dt(self, state, t):
-        
+        '''compute the derivative of the given state'''
         (M1, M2, L1, L2, G) = self.params
 
         dydx = np.zeros_like(state)
@@ -78,6 +78,6 @@ class DoublePendulum:
 
 
     def step(self, dt):
-        
+        ''''perform a step of the simulation'''
         self.state = integrate.odeint(self.dstate_dt, self.state, [0, dt])[1]
         self.time_elapsed += dt
