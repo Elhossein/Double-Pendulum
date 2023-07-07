@@ -6,7 +6,7 @@ from pendulum import DoublePendulum
 from time import time
 deg = 120
 fps = 60
-seconds = 40
+seconds = 5
 trail = -80
 dt = 1./fps
 total_frames = seconds * fps
@@ -106,6 +106,9 @@ animate(0)
 t1 = time()
 interval = 1000 * dt - (t1 - t0)
 print("\n\n\n", 1000 * dt, "\n\n\n")
-anim = animation.FuncAnimation(fig, animate, init_func=init, frames=int(total_frames), interval=20)
-anim.save('animation.gif', writer="imagemagick")
+# anim = animation.FuncAnimation(fig, animate, init_func=init, frames=int(total_frames), interval=20)
+# anim.save('animation.gif', writer="imagemagick")
+anim = animation.FuncAnimation(fig, animate, init_func=init,
+                               frames=range(1, total_frames), interval=dt*1000, blit=True)
+anim.save('animation.gif', fps=fps, writer = 'imagemagick')
 plt.close()
