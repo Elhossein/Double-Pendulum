@@ -12,18 +12,26 @@ class DoublePendulum:
         self.state = self.init_state * np.pi / 180.
 
     
-    def position(self):
+    def get_x(self):
 
-        (L1, L2, M1, M2, G) = self.params
+        (L1, L2, _, _, _) = self.params
 
         x = np.cumsum([self.origin[0],
                        L1 * sin(self.state[0]),
                        L2 * sin(self.state[2])])
+
+        return x
+    
+
+    def get_y(self):
+
+        (L1, L2, _, _, _) = self.params
+
         y = np.cumsum([self.origin[1],
                        -L1 * cos(self.state[0]),
                        -L2 * cos(self.state[2])])
 
-        return (x, y)
+        return y
 
 
     def energy(self):
